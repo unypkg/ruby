@@ -81,9 +81,9 @@ autoreconf -i
 
 ./configure \
     --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
+    --without-baseruby \
     --enable-shared \
     --without-valgrind \
-    --without-baseruby \
     ac_cv_func_qsort_r=no \
     --docdir=/usr/share/doc/ruby
 
