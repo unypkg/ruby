@@ -58,7 +58,7 @@ wget https://cache.ruby-lang.org/pub/ruby/3.3/ruby-3.3.0.tar.xz
 #./autogen.sh
 #cd /uny/sources || exit
 
-archiving_source
+#archiving_source
 
 ######################################################################################################################
 ### Build
