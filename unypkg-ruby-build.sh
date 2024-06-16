@@ -86,11 +86,10 @@ autoreconf -i
     --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
     --disable-rpath \
     --enable-shared \
+    --with-baseruby \
     --without-valgrind \
     ac_cv_func_qsort_r=no \
     --docdir=/usr/share/doc/ruby
-
-#    --without-baseruby \
 
 make -j"$(nproc)"
 make -j"$(nproc)" -k check
