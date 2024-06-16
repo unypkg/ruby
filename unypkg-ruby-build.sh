@@ -82,6 +82,7 @@ autoreconf -i
 export BASERUBY=/uny/pkg/"$pkgname"/"$pkgver"/bin/ruby
 ./configure \
     --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
+    --disable-rpath \
     --without-baseruby \
     --enable-shared \
     --without-valgrind \
