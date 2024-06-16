@@ -52,7 +52,7 @@ echo "newer" >release-"$pkgname"
 git_clone_source_repo
 
 rm -rf ruby
-wget https://cache.ruby-lang.org/pub/ruby/3.3/ruby-3.3.0.tar.xz
+wget https://cache.ruby-lang.org/pub/ruby/3.3/ruby-3.3.3.tar.xz
 
 #cd "$pkgname" || exit
 #./autogen.sh
