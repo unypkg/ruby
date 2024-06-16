@@ -82,11 +82,12 @@ unset LD_RUN_PATH
 
 autoreconf -i
 
+ruby_path=(/uny/pkg/ruby/*/bin/ruby)
 ./configure \
     --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
     --disable-rpath \
     --enable-shared \
-    --with-baseruby \
+    --with-baseruby="${ruby_path[0]}" \
     --without-valgrind \
     ac_cv_func_qsort_r=no \
     --docdir=/usr/share/doc/ruby
