@@ -99,7 +99,7 @@ mv /uny/pkg/ruby/bk "${ruby_path[0]}"
 make -j"$(nproc)"
 make -j"$(nproc)" -k check
 
-rm -rf "${ruby_path[0]}"
+#rm -rf "${ruby_path[0]}"
 make -j"$(nproc)" install
 
 ####################################################
