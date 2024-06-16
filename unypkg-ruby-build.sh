@@ -79,6 +79,7 @@ unset LD_RUN_PATH
 
 autoreconf -i
 
+export BASERUBY=/uny/pkg/"$pkgname"/"$pkgver"/bin/ruby
 ./configure \
     --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
     --without-baseruby \
