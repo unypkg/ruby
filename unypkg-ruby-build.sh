@@ -71,6 +71,9 @@ source /uny/git/unypkg/fn
 
 pkgname="ruby"
 
+ruby_path=(/uny/pkg/ruby/*)
+mv "${ruby_path[0]}" /uny/pkg/ruby/bk
+
 version_verbose_log_clean_unpack_cd
 get_env_var_values
 get_include_paths
@@ -82,18 +85,21 @@ unset LD_RUN_PATH
 
 autoreconf -i
 
-ruby_path=(/uny/pkg/ruby/*/bin/ruby)
+mv /uny/pkg/ruby/bk "${ruby_path[0]}"
+
 ./configure \
     --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
     --disable-rpath \
     --enable-shared \
-    --with-baseruby="${ruby_path[0]}" \
+    --with-baseruby="${ruby_path[0]}"/bin/ruby \
     --without-valgrind \
     ac_cv_func_qsort_r=no \
     --docdir=/usr/share/doc/ruby
 
 make -j"$(nproc)"
 make -j"$(nproc)" -k check
+
+rm -rf "${ruby_path[0]}"
 make -j"$(nproc)" install
 
 ####################################################
