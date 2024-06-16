@@ -11,7 +11,7 @@ set -vx
 wget -qO- uny.nu/pkg | bash -s buildsys
 
 ### Installing build dependencies
-unyp install libyaml
+unyp install libyaml openssl libffi
 
 #pip3_bin=(/uny/pkg/python/*/bin/pip3)
 #"${pip3_bin[0]}" install --upgrade pip
@@ -51,6 +51,9 @@ echo "newer" >release-"$pkgname"
 
 git_clone_source_repo
 
+rm -rf ruby
+wget https://cache.ruby-lang.org/pub/ruby/3.3/ruby-3.3.0.tar.xz
+
 #cd "$pkgname" || exit
 #./autogen.sh
 #cd /uny/sources || exit
@@ -77,9 +80,8 @@ get_include_paths
 
 unset LD_RUN_PATH
 
-autoreconf -i
+#autoreconf -i
 
-export BASERUBY=/uny/pkg/"$pkgname"/"$pkgver"/bin/ruby
 ./configure \
     --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
     --disable-rpath \
