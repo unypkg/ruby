@@ -77,6 +77,8 @@ get_include_paths
 
 unset LD_RUN_PATH
 
+autoreconf -i
+
 ./configure \
     --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
     --enable-shared \
