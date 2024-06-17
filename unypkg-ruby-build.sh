@@ -49,16 +49,17 @@ version_details
 # Release package no matter what:
 echo "newer" >release-"$pkgname"
 
-git_clone_source_repo
+#git_clone_source_repo
 
-#rm -rf ruby
-#wget https://cache.ruby-lang.org/pub/ruby/3.3/ruby-3.3.3.tar.xz
+# shellcheck disable=SC2001
+minor_ver="$(echo "$latest_ver" | sed "s|\.[0-9]*$||")"
+wget https://cache.ruby-lang.org/pub/ruby/"$minor_ver"/ruby-"$latest_ver".tar.xz
 
 #cd "$pkgname" || exit
 #./autogen.sh
 #cd /uny/sources || exit
 
-archiving_source
+#archiving_source
 
 ######################################################################################################################
 ### Build
@@ -83,23 +84,16 @@ get_include_paths
 
 unset LD_RUN_PATH
 
-autoreconf -i
-
-mv /uny/pkg/ruby/bk "${ruby_path[0]}"
-
 ./configure \
     --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
-    --disable-rpath \
     --enable-shared \
-    --with-baseruby="${ruby_path[0]}"/bin/ruby \
+    --without-baseruby \
     --without-valgrind \
     ac_cv_func_qsort_r=no \
     --docdir=/usr/share/doc/ruby
 
 make -j"$(nproc)"
 make -j"$(nproc)" -k check
-
-#rm -rf "${ruby_path[0]}"
 make -j"$(nproc)" install
 
 ####################################################
